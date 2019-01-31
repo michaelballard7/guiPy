@@ -24,7 +24,7 @@ def insert(item, quantity, price):
     connection = pg.connect(params)
     cursor = connection.cursor()
     # cursor.execute("INSERT INTO inventory VALUES ('%s','%s','%s')"%(item, quantity, price))  # this is vulnerable to an sqlInjection
-    cursor.execute("INSERT INTO inventory VALUES (%s,%s,%s)",(item, quantity, price))
+    cursor.execute("INSERT INTO inventory VALUES (%s,%s,%s)", (item, quantity, price))
     connection.commit()
     connection.close()
 
@@ -41,7 +41,7 @@ def view():
 def update(quantity, price, item):
     conn = pg.connect(params)
     cur = conn.cursor()
-    cur.execute("UPDATE inventory SET quantity=%s, price=%s WHERE item=%s",(quantity, price, item))
+    cur.execute("UPDATE inventory SET quantity=%s, price=%s WHERE item=%s", (quantity, price, item))
     conn.commit()
     conn.close()
 
@@ -50,13 +50,12 @@ def delete(item):
     conn = pg.connect(params)
     cur = conn.cursor()
     # in sqlite I must add the comma
-    cur.execute("DELETE FROM inventory WHERE item=%s",(item,))
+    cur.execute("DELETE FROM inventory WHERE item=%s", (item,))
     conn.commit()
     conn.close()
 
 
 create_table()
-# insert("Condensed Milk", 5, 1.00)
-update(11, 6.0, "wine bottle")
-delete("Condensed Milk")
+insert("Corona", 1, 3.00)
+# update(11, 6.0, "wine bottle")
 print(view())
