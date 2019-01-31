@@ -22,6 +22,9 @@ entry3 = tk.Entry(root)
 canvas1.create_window(100, 240, window=entry3)
 
 
+tk.Canvas()
+
+
 def insert_number():
     global x1
     global x2
